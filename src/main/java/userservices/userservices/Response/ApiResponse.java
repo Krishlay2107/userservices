@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import java.util.function.BinaryOperator;
 
 @Data
-
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApiResponse {

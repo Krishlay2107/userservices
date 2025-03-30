@@ -1,0 +1,76 @@
+# MongoDB Configuration
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: userdb
+  application:
+    name: USER-SERVICE
+  config:
+    import: configserver:http://localhost:8086
+# Logging Configuration
+logging:
+  level:
+    userservices: INFO
+
+# Server Configuration
+server:
+  port: 8084
+
+## Eureka Client Configuration
+# eureka:
+#   client:
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka/
+#     fetch-registry: true
+#     register-with-eureka: true
+#   instance:
+#     prefer-ip-address: true
+
+# Spring Application Name
+
+
+
+# Management
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+# Resilience4j CircuitBreaker
+resilience4j:
+  circuitbreaker:
+    instances:
+      rating_and_hotel:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 6s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+  retry:
+    instances:
+      rating_and_hotel:
+        registerHealthIndicator: true
+        maxAttempts: 3
+        waitDuration: 5s
+
+  # Resilience4j Rate Limiter Configuration
+  ratelimiter:
+    instances:
+      USERRATELIMITER:
+        limitForPeriod: 10          # Maximum number of requests per time window
+        limitRefreshPeriod: 1s      # Time window (1 second)
+        timeoutDuration: 0          # Timeout duration for waiting on a request slot

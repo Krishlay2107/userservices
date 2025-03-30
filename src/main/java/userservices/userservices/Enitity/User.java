@@ -18,16 +18,16 @@ import java.util.List;
 public class User {
 
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @Id
-     private ObjectId id;
+     private String id;
 
 
     public String getUserName() {

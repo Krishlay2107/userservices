@@ -1,6 +1,7 @@
 package userservices.userservices.Enitity;
 
 import lombok.*;
+
 import org.bson.types.ObjectId;
 
 @Data
@@ -8,35 +9,37 @@ import org.bson.types.ObjectId;
 @AllArgsConstructor
 public class Rating {
 
-    public ObjectId getId() {
-        return id;
+
+    public String getHotelId() {
+        return hotelId;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
+    public void setHotelId(String hotelId) {
+        this.hotelId = hotelId;
     }
 
-    private ObjectId  id;
+    private String  hotelId;
 
-    public String getRemark() {
-        return remark;
+
+    public String getFeedback() {
+        return feedback;
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
-    private  String remark;
+    private  String feedback;
 
-    public ObjectId getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(ObjectId userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    private  ObjectId userId;
+    private  String userId;
 
     public int getRate() {
         return rate;
@@ -47,6 +50,17 @@ public class Rating {
     }
 
     private int rate;
+
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    private Hotel hotel;
 
 
 }
